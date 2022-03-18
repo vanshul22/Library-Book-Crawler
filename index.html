@@ -30,6 +30,50 @@
     </div>
 </nav>
 
+<!-- Section Area start here -->
+<section class="container my-3">
+    <h1>Library-Book-Crawler</h1>
+    <form>
+        <!-- inputs startsfrom here -->
+        <div class="row mb-3">
+            <label for="bookName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="bookName" placeholder="Name of Book...">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="author" class="col-sm-2 col-form-label">Author</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="author" placeholder="Author of Book...">
+            </div>
+        </div>
+        <!-- Radio Button starts from here -->
+        <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Type of Book</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="fiction" value="fiction">
+                    <label class="form-check-label" for="fiction">Fiction</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="programming" value="programming">
+                    <label class="form-check-label" for="programming">Computer Programming</label>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="cooking" value="cooking">
+                    <label class="form-check-label" for="cooking">Cooking</label>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="other" value="other" checked>
+                    <label class="form-check-label" for="other">Other</label>
+                </div>
+            </div>
+        </fieldset>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Add Book</button>
+    </form>
+</section>
+
 <!-- Footer area starts here -->
 <footer>
     <div class="fixed-bottom text-white text-center p-2" style="background-color: rgb(0, 0, 0);">
