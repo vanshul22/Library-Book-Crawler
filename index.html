@@ -33,9 +33,10 @@
 <!-- Section Area start here -->
 <section class="container my-3">
     <h1>Library-Book-Crawler</h1>
-    <form>
+    <hr>
+    <form class="my-4">
         <!-- inputs startsfrom here -->
-        <div class="row mb-3">
+        <div class="row mb-3 ">
             <label for="bookName" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="bookName" placeholder="Name of Book...">
@@ -72,23 +73,46 @@
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Add Book</button>
     </form>
+    <hr>
+    <!-- Table Content -->
+    <div id="table" class="my-5 m">
+        <table class="table">
+            <thead>
+                <tr class="table-dark text-center">
+                    <th scope="col">S.No.</th>
+                    <th scope="col">Name of Book</th>
+                    <th scope="col">Author of Book</th>
+                    <th scope="col">Type of Book</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-primary text-center">
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
+
 
 <!-- Footer area starts here -->
 <footer>
-    <div class="fixed-bottom text-white text-center p-2" style="background-color: rgb(0, 0, 0);">
+    <div class="fixed-bottom text-white text-center p-2 " style="background-color: rgb(0, 0, 0); ">
         Library-Book-Crawler © 2022 Copyright
-        <a class="text-white" style="text-decoration: none;" href="mailto:vkvanshulkesharwani54@gmail.com?subject=Need help for Library Book Crawler">vkvanshulkesharwani54@gmail.com</a>
+        <a class="text-white " style="text-decoration: none; " href="mailto:vkvanshulkesharwani54@gmail.com?subject=Need help for Library Book Crawler ">vkvanshulkesharwani54@gmail.com</a>
     </div>
 </footer>
 
 <body>
     <!-- Prototype JS -->
-    <script src="./JS/Prototype_script.js"></script>
+    <script src="./JS/Prototype_script.js "></script>
     <!-- Classes JS -->
-    <script src="./JS/Classes_script.js"></script>
+    <script src="./JS/Classes_script.js "></script>
     <!--  Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
 </body>
 
 </html>
