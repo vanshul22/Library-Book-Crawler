@@ -29,12 +29,13 @@
         </div>
     </div>
 </nav>
+<div id="message"></div>
 
 <!-- Section Area start here -->
 <section class="container my-3">
     <h1>Library-Book-Crawler</h1>
     <hr>
-    <form class="my-4">
+    <form class="my-4" id="libraryForm">
         <!-- inputs startsfrom here -->
         <div class="row mb-3 ">
             <label for="bookName" class="col-sm-2 col-form-label">Name</label>
@@ -75,7 +76,8 @@
     </form>
     <hr>
     <!-- Table Content -->
-    <div id="table" class="my-5 m">
+    <h3>Your Books</h3>
+    <div id="table" class="mb-5 mt-3">
         <table class="table">
             <thead>
                 <tr class="table-dark text-center">
@@ -85,13 +87,8 @@
                     <th scope="col">Type of Book</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table-primary text-center">
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+            <tbody id="tableBody">
+
             </tbody>
         </table>
     </div>
