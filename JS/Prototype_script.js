@@ -8,7 +8,7 @@ Description : This is a Web app for adding different types of books name with th
 Prototype_Script : This JS file take concept of Prototype.
 */
 
-// Created Constructor for book class.
+// Created Constructor for book function it will work as class with constructor.
 function Book(name, author, type) {
     this.name = name;
     this.author = author;
