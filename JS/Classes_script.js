@@ -2,11 +2,12 @@
 Website Name - Library-Book-Crawler
 Name : Vanshul Kesharwani
 Date : 19/03/2022
-Version : 1.0.0
+Version : 2.0.0
 Email : vkvanshulkesharwani54@gmail.com
 Description : This is a Web app for adding different types of books name with their author and description.
 Classes_Script : This JS file take concept of Classes.
 */
+
 
 // Creating class with constructor.
 class Book {
@@ -21,17 +22,32 @@ class Book {
 class Display {
     // Created method name as add. it will add data in table body.
     add(book) {
+        showBooks();
         // taking table body from their ID.
         let tableBody = document.getElementById("tableBody");
+        // Taking all local storage in this books variable.
+        let books = localStorage.getItem("books");
+
+        // Checking for if localstorage is null, put empty to the notes obj.
+        if (books == null) {
+            // Empty the value while  we insert the book to table.
+            tableBody.innerHTML = ``;
+        };
+
         // Adding book to DOM
         let uiString = `
-        <tr class="table-primary text-center">
-            <th scope="row">*</th>
-            <td>${book.name}</td>
-            <td>${book.author}</td>
-            <td>${book.type}</td>
-        </tr>`;
+                <tr class="table-primary text-center">
+                <th scope="row">New!</th>
+                    <td>${book.name}</td>
+                    <td>${book.author}</td>
+                    <td>${book.type}</td>
+                </tr>`;
+        // Adding book to DOM. += because we have to add more and more books.
         tableBody.innerHTML += uiString;
+        // After 15seconds it will reload the page and showing number wise books.
+        setTimeout(function() {
+            showBooks();
+        }, 15000);
     };
 
     // Created method name as clear. it will empty data from inputs.
@@ -41,12 +57,14 @@ class Display {
         // Resetting form directly.
         libraryForm.reset();
     };
+
     // Created method name as validate. it will validate inputs is correct or not and for correct it will return true and for incorrect it will return false.
     validate(book) {
         if (book.name.length <= 2 || book.author.length <= 2 || book.name.length > 25 || book.author.length > 20) {
             return false
         } else { return true };
     };
+
     show(type, message) {
         // Taken message ID here
         let messageID = document.getElementById("message");
@@ -64,11 +82,12 @@ class Display {
 };
 
 
-
 // Adding submit Event Listener to the Submit button of form id is libraryForm. running with submit event libraryFormSubmit function.
 let libraryForm = document.getElementById("libraryForm");
 libraryForm.addEventListener("submit", libraryFormSubmit);
 
+// Read data and fill books details in library while page refrsh or load.
+showBooks();
 
 // Creating function for performing submit action.
 function libraryFormSubmit(e) {
@@ -103,14 +122,78 @@ function libraryFormSubmit(e) {
     if (display.validate(book)) {
         // Adding method to display function it will add book in DOM in library.
         display.add(book);
+        // showBooks();
         // Adding method to display function it will clear fields of form in DOM.
         display.clear();
         // Showing Success message to user.
         display.show("success", "Your Book has been added successfully.");
+
+        // Taking all local storage in this notes variable.
+        let books = localStorage.getItem("books");
+        let booksObj;
+
+        // Checking for if localstorage is null.
+        if (books == null) {
+            booksObj = [];
+        } // if localstorage has value it will parse all the value in booksObj.
+        else {
+            booksObj = JSON.parse(books);
+        };
+        // Creating objects for storing multiple values.
+        let myObj = {
+            name: name,
+            author: author,
+            type: type // name, author and type of books will store here.
+        };
+        // Pushing myobject value to the booksObj.
+        booksObj.push(myObj);
+        // Send value of booksObj to local storage with a books parameter.
+        localStorage.setItem("books", JSON.stringify(booksObj));
     } else {
         // Showing warning to the user.
         display.show("danger", "Please recheck your input its invalid.");
     }
     // Preventing default behaviour of submit button to reload the page.
     e.preventDefault();
+};
+
+function showBooks() {
+
+    // Taking all local storage in this notes variable.
+    let books = localStorage.getItem("books");
+
+    // Checking for if localstorage is null, put empty to the notes obj.
+    if (books == null) {
+        booksObj = [];
+    } // if localstorage has value it will parse all the value in notesObj.
+    else {
+        booksObj = JSON.parse(books);
+    };
+
+    // Creating blank variable string.
+    let uiString = "";
+    // taking table body from their ID.
+    let tableBody = document.getElementById("tableBody");
+
+    // Checking for if books not equal to 0 we will print all notes..
+    if (booksObj.length != 0) {
+        // Created function to loop all books from object.
+        booksObj.forEach(function(element, index) {
+
+            // Adding book to DOM. Added uiString stringVariable to this new generated uiString stringVariable. for displaying available books.
+            uiString += `
+                    <tr class="table-primary text-center">
+                    <th scope="row">${index + 1}</th>
+                    <td>${element.name}</td>
+                    <td>${element.author}</td>
+                    <td>${element.type}</td>
+                    </tr>`;
+            tableBody.innerHTML = uiString;
+        });
+    } // Else we will show this message.
+    else {
+        let table = document.getElementById("table");
+        // If nothing in local storage we will print this message.
+        tableBody.innerHTML = `<b>Nothing to show here. Use "Add Book" section to add a books.</b>`;
+    };
 };
