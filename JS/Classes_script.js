@@ -42,6 +42,9 @@ class Display {
             // Check from include funcion if this message content "Add" is present in table body inner text.
             tableBody.innerHTML = ``;
         };
+        let tableRow = document.getElementById("tableRow");
+        // show titles while data is there.
+        tableRow.style.display = "table-row";
 
         // Adding book to DOM
         let uiString = `
@@ -185,8 +188,12 @@ function showBooks() {
     // taking table body from their ID.
     let tableBody = document.getElementById("tableBody");
 
+    let tableRow = document.getElementById("tableRow");
+
     // Checking for if books not equal to 0 we will print all notes..
     if (booksObj.length != 0) {
+        // show titles while data is there.
+        tableRow.style.display = "table-row";
         // Created function to loop all books from object.
         booksObj.forEach(function(element, index) {
 
@@ -203,7 +210,9 @@ function showBooks() {
         });
     } // Else we will show this message.
     else {
-        let table = document.getElementById("table");
+
+        // Hide titles while nothing is there.
+        tableRow.style.display = "none";
         // If nothing in local storage we will print this message.
         tableBody.innerHTML = `<b>Nothing to show here. Use "Add Book" section to add a books.</b>`;
     };
