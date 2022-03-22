@@ -2,7 +2,7 @@
 Website Name - Library-Book-Crawler
 Name : Vanshul Kesharwani
 Date : 19/03/2022
-Version : 2.1.1
+Version : 2.2.1
 Email : vkvanshulkesharwani54@gmail.com
 Description : This is a Web app for adding different types of books name with their author and description.
 Classes_Script : This JS file take concept of Classes.
@@ -28,9 +28,18 @@ class Display {
         // Taking all local storage in this books variable.
         let books = localStorage.getItem("books");
 
-        // Checking for if localstorage is null, put empty to the notes obj.
+        // taking inner text of tablebody to fix error of storage is empty while enterning value.
+        let tableBodyInnerText = tableBody.innerText;
+
+        // Checking for if localstorage is null, put empty to the Html of the tableBody. ignoring errors.
         if (books == null) {
             // Empty the value while  we insert the book to table.
+            tableBody.innerHTML = ``;
+        } else if (tableBodyInnerText == `Nothing to show here. Use "Add Book" section to add a books.`) {
+            // Checking by whole message.
+            tableBody.innerHTML = ``;
+        } else if (tableBodyInnerText.includes("Add")) {
+            // Check from include funcion if this message content "Add" is present in table body inner text.
             tableBody.innerHTML = ``;
         };
 
@@ -61,7 +70,7 @@ class Display {
 
     // Created method name as validate. it will validate inputs is correct or not and for correct it will return true and for incorrect it will return false.
     validate(book) {
-        if (book.name.length <= 2 || book.author.length <= 2 || book.name.length > 25 || book.author.length > 20) {
+        if (book.name.length <= 2 || book.author.length <= 2 || book.name.length > 26 || book.author.length > 26) {
             return false
         } else { return true };
     };
@@ -152,7 +161,7 @@ function libraryFormSubmit(e) {
         localStorage.setItem("books", JSON.stringify(booksObj));
     } else {
         // Showing warning to the user.
-        display.show("danger", "Please recheck your input its invalid.");
+        display.show("danger", "Please recheck your input its invalid. Try to add between 3 to 25 characters.");
     }
     // Preventing default behaviour of submit button to reload the page.
     e.preventDefault();
