@@ -2,7 +2,7 @@
 Website Name - Library-Book-Crawler
 Name : Vanshul Kesharwani
 Date : 19/03/2022
-Version : 2.0.0
+Version : 2.1.1
 Email : vkvanshulkesharwani54@gmail.com
 Description : This is a Web app for adding different types of books name with their author and description.
 Classes_Script : This JS file take concept of Classes.
@@ -21,7 +21,7 @@ class Book {
 // Creating class Display with their methods.
 class Display {
     // Created method name as add. it will add data in table body.
-    add(book) {
+    addBook(book) {
         showBooks();
         // taking table body from their ID.
         let tableBody = document.getElementById("tableBody");
@@ -41,13 +41,14 @@ class Display {
                     <td>${book.name}</td>
                     <td>${book.author}</td>
                     <td>${book.type}</td>
+                    <td><button id="" onclick="deleteBook(this.id)" class="btn btn-dark" style="font-size: 0.5rem;">D</button></td>
                 </tr>`;
         // Adding book to DOM. += because we have to add more and more books.
         tableBody.innerHTML += uiString;
         // After 15seconds it will reload the page and showing number wise books.
         setTimeout(function() {
             showBooks();
-        }, 15000);
+        }, 10000);
     };
 
     // Created method name as clear. it will empty data from inputs.
@@ -121,7 +122,7 @@ function libraryFormSubmit(e) {
     // Adding function to check for all input parametres. If its true then only it will add book.
     if (display.validate(book)) {
         // Adding method to display function it will add book in DOM in library.
-        display.add(book);
+        display.addBook(book);
         // showBooks();
         // Adding method to display function it will clear fields of form in DOM.
         display.clear();
@@ -187,6 +188,7 @@ function showBooks() {
                     <td>${element.name}</td>
                     <td>${element.author}</td>
                     <td>${element.type}</td>
+                    <td><button id="${index}" onclick="deleteBook(this.id)" class="btn btn-dark" style="font-size: 0.5rem;">D</button></td>
                     </tr>`;
             tableBody.innerHTML = uiString;
         });
@@ -196,4 +198,24 @@ function showBooks() {
         // If nothing in local storage we will print this message.
         tableBody.innerHTML = `<b>Nothing to show here. Use "Add Book" section to add a books.</b>`;
     };
+};
+
+// Function to delete a book.
+function deleteBook(index) {
+    // Taking all local storage in this books variable.
+    let books = localStorage.getItem("books");
+
+    // Checking for if localstorage is null, put empty to the notes obj.
+    if (books == null) {
+        booksObj = [];
+    } // if localstorage has value it will parse all the value in notesObj.
+    else {
+        booksObj = JSON.parse(books);
+    };
+
+    // Delete object in variable.
+    booksObj.splice(index, 1);
+    // update value of booksObj to local storage with a books parameter.
+    localStorage.setItem("books", JSON.stringify(booksObj));
+    showBooks();
 };
